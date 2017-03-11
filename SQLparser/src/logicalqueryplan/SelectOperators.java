@@ -17,7 +17,6 @@ import net.sf.jsqlparser.expression.operators.relational.MinorThanEquals;
 import net.sf.jsqlparser.expression.operators.relational.NotEqualsTo;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
-import cs4321.operator.PhysicalPlanBuilder;
 import cs4321.support.Catalog;
 
 /**
@@ -90,7 +89,7 @@ public class SelectOperators extends Operators {
 	 * @param str the string that will be used for writing the file.
 	 */
 	@Override
-	public void accept(PhysicalPlanBuilder visitor, String s, StringBuilder str) {
+	public void accept(LogicalQueryVisitor visitor, String s, StringBuilder str) {
 		visitor.visit(this,s,str);
 	}
 	

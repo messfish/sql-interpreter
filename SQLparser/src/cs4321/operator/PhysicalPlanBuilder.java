@@ -16,6 +16,7 @@ import cs4321.support.Catalog;
 import logicalqueryplan.DP;
 import logicalqueryplan.DuplicateEliminationOperators;
 import logicalqueryplan.JoinOperators;
+import logicalqueryplan.LogicalQueryVisitor;
 import logicalqueryplan.Mule;
 import logicalqueryplan.ProjectOperators;
 import logicalqueryplan.SelectOperators;
@@ -40,7 +41,7 @@ import net.sf.jsqlparser.statement.select.PlainSelect;
  * @author jz699 JUNCHEN ZHAN
  *
  */
-public class PhysicalPlanBuilder {
+public class PhysicalPlanBuilder implements LogicalQueryVisitor {
 	
 	private String[] array; // the array of tables.
 	private PlainSelect ps; // the selection query of the physical plan.
@@ -91,6 +92,7 @@ public class PhysicalPlanBuilder {
 	 * @param s the string that is used for indicating the tree depth.
 	 * @param str the string that will be used for writing the file.
 	 */
+	@Override
 	public void visit(ProjectOperators operator, String s, StringBuilder str){
 		StringBuilder sb = new StringBuilder();
 		if(!ps.getSelectItems().get(0).toString().equals("*")){
@@ -108,6 +110,7 @@ public class PhysicalPlanBuilder {
 	 * @param s the string that is used for indicating the tree depth.
 	 * @param str the string that will be used for writing the file.
 	 */
+	@Override
 	public void visit(JoinOperators operator, String s, StringBuilder str){
 		for(int i=0;i<array.length;i++)
 			operator.getChild(i).accept(this,s+"-",str);
@@ -149,6 +152,7 @@ public class PhysicalPlanBuilder {
 	 * @param s the string that is used for indicating the tree depth.
 	 * @param str the string that will be used for writing the file.
 	 */
+	@Override
 	public void visit(SelectOperators operator, String s, StringBuilder str) {
 		Expression express = operator.getResult();
 		double[][] list = operator.getPara();
@@ -174,6 +178,7 @@ public class PhysicalPlanBuilder {
 	 * @param s the string that is used for indicating the tree depth.
 	 * @param str the string that will be used for writing the file.
 	 */
+	@Override
 	public void visit(DuplicateEliminationOperators operator, String s, StringBuilder str) {
 		str.append(s+"DupElim").append("\n");
 		operator.getChild().accept(this,s+"-",str);
@@ -187,6 +192,7 @@ public class PhysicalPlanBuilder {
 	 * @param s the string that is used for indicating the tree depth.
 	 * @param str the string that will be used for writing the file.
 	 */
+	@Override
 	public void visit(SortOperators operator, String s, StringBuilder str) {
 		StringBuilder sb = new StringBuilder();
 		if(ps.getOrderByElements()!=null){

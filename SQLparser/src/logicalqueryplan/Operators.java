@@ -1,7 +1,5 @@
 package logicalqueryplan;
 
-import cs4321.operator.PhysicalPlanBuilder;
-
 /**
  * This is an abstract class operator and the super class of 
  * all concrete logical operators.
@@ -31,7 +29,7 @@ public abstract class Operators {
 	 * @param s the string that is used for indicating the tree depth.
 	 * @param str the string that will be used for writing the file.
 	 */
-	public abstract void accept(PhysicalPlanBuilder visitor, String s, StringBuilder str);
+	public abstract void accept(LogicalQueryVisitor visitor, String s, StringBuilder str);
 	
 	/**
 	 * return the child operator.

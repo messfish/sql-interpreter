@@ -1,7 +1,6 @@
 package logicalqueryplan;
 
 import net.sf.jsqlparser.statement.select.PlainSelect;
-import cs4321.operator.PhysicalPlanBuilder;
 
 /**
  * this class deals with the order by language.
@@ -30,7 +29,7 @@ public class SortOperators extends Operators {
 	 * @param str the string that will be used for writing the file.
 	 */
 	@Override
-	public void accept(PhysicalPlanBuilder visitor, String s, StringBuilder str) {
+	public void accept(LogicalQueryVisitor visitor, String s, StringBuilder str) {
 		// TODO Auto-generated method stub
 		visitor.visit(this,s,str);
 	}

@@ -1,7 +1,5 @@
 package logicalqueryplan;
 
-import cs4321.operator.PhysicalPlanBuilder;
-
 /**
  * This class deals with duplicate elimination by the time 
  * when the tuples are sorted.
@@ -26,7 +24,7 @@ public class DuplicateEliminationOperators extends Operators {
 	 * @param str the string that will be used for writing the file.
 	 */
 	@Override
-	public void accept(PhysicalPlanBuilder visitor, String s, StringBuilder str) {
+	public void accept(LogicalQueryVisitor visitor, String s, StringBuilder str) {
 		// TODO Auto-generated method stub
 		visitor.visit(this,s,str);
 	}
