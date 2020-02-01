@@ -46,8 +46,8 @@ public abstract class Operator implements TupleWriter{
 			e.printStackTrace();;
 		}
 	}
-
-	/**
+     
+    /**
      * fetch the tuples iteratively and write them on a page.
      * @return the byte buffer contains data.
      */
