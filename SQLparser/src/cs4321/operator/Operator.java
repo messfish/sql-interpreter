@@ -59,7 +59,7 @@ public abstract class Operator implements TupleWriter{
 		Tuple tuple =  null;
 		while((tuple=getNextTuple())!=null&&index+tuple.length()*8<=4096){
 			buffer.putInt(0,tuple.length());
-			for(int i=0;i<tuple.length();i++){
+			for(int i = 0;i < tuple.length();i++){
 				buffer.putInt(index,tuple.getData(i));
 				index += 4;
 			}
